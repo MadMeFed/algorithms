@@ -1,0 +1,15 @@
+import collections
+
+def bfs(graph, root):
+    distances = {}
+    distances[root] = 0
+    q = collections.deque([root])
+    while q:
+        current = q.popleft()
+        for neighbor in graph[current]:
+            if neighbor not in distances:
+                distances[neighbor] = distances[current] + 1
+                q.append(neighbor)
+    return distances
+graph = {1:[2,3], 2:[4], 3:[4,5], 4:[3,5], 5:[]}
+print(bfs(graph, 1))
